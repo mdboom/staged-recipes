@@ -1,0 +1,45 @@
+{% set name = "emsdk" %}
+{% set version = "1.38.13" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/juj/emsdk.git
+  git_rev: master
+
+build:
+  number: 0
+  skip: true  # [py3k]
+
+requirements:
+  build:
+    # if your project compiles code (such as a C extension) then add the required compilers as separate entries here.
+    # compilers are named 'c', 'cxx' and 'fortran'.
+    - python
+  host:
+    - python
+  run:
+    - python
+    - nodejs
+
+test:
+  # Some package might need a `test/commands` key to check CLI.
+  # List all the packages/modules that `run_test.py` imports.
+  commands:
+    - emsdk list
+
+about:
+  home: http://github.com/juj/emsdk
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: 'Emscripten SDK'
+
+extra:
+  recipe-maintainers:
+    # GitHub IDs for maintainers of the recipe.
+    # Always check with the people listed below if they are OK becoming maintainers of the recipe. (There will be spam!)
+    - mdboom
+    - scopatz
